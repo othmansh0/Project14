@@ -15,6 +15,12 @@
 
 //We want each hole to do as much work itself as possible, so rather than clutter our game scene with code we're going to create a subclass of SKNode that will encapsulate all hole related functionality
 
+//-----------------------------------------------------------------------------------------
+
+//SKCropNode is a special kind of SKNode subclass that uses an image as a cropping mask: anything in the colored part will be visible, anything in the transparent part will be invisible
+//By default, nodes don't crop..we need crop node to hide penguins
+
+// have a crop mask shaped like the hole that makes the penguin invisible when it moves outside the mask.
 
 import SpriteKit
 
@@ -44,8 +50,11 @@ class GameScene: SKScene {
         gameScore.fontSize = 48
         addChild(gameScore)
         
-     
-        
+        //Placing slots 5 4 5 4
+        for i in 0 ..< 5 { createSlot(at: CGPoint(x: 100 + (i * 170), y: 410)) }
+        for i in 0 ..< 4 { createSlot(at: CGPoint(x: 180 + (i * 170), y: 320)) }
+        for i in 0 ..< 5 { createSlot(at: CGPoint(x: 100 + (i * 170), y: 230)) }
+        for i in 0 ..< 4 { createSlot(at: CGPoint(x: 180 + (i * 170), y: 140)) }
     }
     
     
@@ -56,6 +65,7 @@ class GameScene: SKScene {
     func createSlot (at position: CGPoint) {
         let slot = WhackSlot()
         slot.configure(at: position)
+        //adds the slot to our scene
         addChild(slot)
         slots.append(slot)
     }
