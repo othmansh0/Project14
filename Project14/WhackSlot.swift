@@ -7,11 +7,19 @@
 
 //SKNode is base class doesn't draw images like sprites or hold text like labels; it just sits in our scene at a position, holding other nodes as children.
 // crop node only crops nodes that are inside it
+
+//-----------------------------------------------------------------------------------------
+
+//SKTexture, which is to SKSpriteNode sort of what UIImage is to UIImageView – it holds image data, but isn't responsible for showing it
+
 import SpriteKit
 import UIKit
 
 class WhackSlot: SKNode {
     var charNode: SKSpriteNode!
+    
+    var isVisible = false
+    var isHit = false
     
     //if you created a custom initializer you get roped into creating others because of Swift's required init rules
     //Since we don't have any non-optional properties swift will use parent init()
@@ -36,6 +44,30 @@ class WhackSlot: SKNode {
         cropNode.addChild(charNode)
         //add cropNode to slot node
         addChild(cropNode)
+    }
+    
+    func show(hideTime: Double) {
+        if isVisible { return }
+        //Move charNode up
+        charNode.run(SKAction.moveBy(x: 0, y: 80, duration: 0.05))
+        isVisible = true
+        isHit = false
+        
+        //Decide whether penguin is good or evil
+        
+        if Int.random(in: 0...2) == 0 {//1/3 will be good pen.
+            charNode.texture = SKTexture(imageNamed: "penguinGood")
+            charNode.name = "charFriend"
+        }
+        else {
+            charNode.texture = SKTexture(imageNamed: "penguinEvil")
+            charNode.name = "charEnemy"
+        }
+        
+        
+        
+    
+        
     }
      
 
