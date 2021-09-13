@@ -129,6 +129,13 @@ class GameScene: SKScene {
             gameOver.zPosition = 1
             addChild(gameOver)
             run(SKAction.playSoundFileNamed("gameOver.mp3", waitForCompletion: false))
+            
+            let finalScore = SKLabelNode(fontNamed: "Chalkduster")
+            finalScore.text = "Scoreff: \(score)"
+            finalScore.position = CGPoint(x: 512, y: 320)
+            gameOver.zPosition = 1
+            addChild(finalScore)
+            
             return //to stop recursive calling
         }
         
