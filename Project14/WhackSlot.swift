@@ -106,7 +106,6 @@ class WhackSlot: SKNode {
         charNode.run(sequence)
         
         
-        
         //We need to use SKAction.run(block:) in order to set the penguin's isVisible property to be false rather than doing it directly, because we want it to fit into the sequence
     }
 

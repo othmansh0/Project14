@@ -24,6 +24,9 @@
 //--------------------------------------------------------------------------------------
 
 //asyncAfter() is used to schedule a closure to execute after the time has been reached.
+//asyncAfter() takes an absolute time rather than an offset relative to now.
+//We normally specify it as .now() plus some offset
+//-----------------------------------------------------------------------------------------
 
 import SpriteKit
 
@@ -125,6 +128,7 @@ class GameScene: SKScene {
             gameOver.position = CGPoint(x: 512, y: 384)
             gameOver.zPosition = 1
             addChild(gameOver)
+            run(SKAction.playSoundFileNamed("gameOver.mp3", waitForCompletion: false))
             return //to stop recursive calling
         }
         
