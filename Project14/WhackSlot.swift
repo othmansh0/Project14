@@ -12,6 +12,14 @@
 
 //SKTexture, which is to SKSpriteNode sort of what UIImage is to UIImageView – it holds image data, but isn't responsible for showing it
 
+//--------------------------------------------------------------
+
+//SKAction.wait(forDuration:) creates an action that waits for a period of time, measured in seconds
+
+//SKAction.run(block:) will run any code we want, provided as a closure. "Block" is Objective-C's name for a Swift closure
+
+//SKAction.sequence() takes an array of actions, and executes them in order. Each action won't start executing until the previous one finished.
+
 import SpriteKit
 import UIKit
 
@@ -38,6 +46,7 @@ class WhackSlot: SKNode {
         cropNode.maskNode = SKSpriteNode(imageNamed: "whackMask")
         charNode = SKSpriteNode(imageNamed: "penguinGood")
         // placed at -90, which is way below the hole
+        //x: 0 means in center of the hole
         charNode.position = CGPoint(x: 0, y: -90)
         charNode.name = "character"
         //add charNode to cropNode bec crop node only crops nodes that are inside it
@@ -78,6 +87,22 @@ class WhackSlot: SKNode {
         charNode.run(SKAction.moveBy(x: 0, y: -80, duration: 0.05))
         isVisible = false
         
+    }
+    
+    func hit(){
+        isHit = true
+        
+        let delay = SKAction.wait(forDuration: 0.25)
+        //slower than hide() method
+        let hide = SKAction.moveBy(x: 0, y: -89, duration: 0.5)
+        let notVisible = SKAction.run {[weak self] in self?.isVisible = false }
+        
+        let sequence = SKAction.sequence([delay,hide,notVisible])
+        charNode.run(sequence)
+        
+        
+        
+        //We need to use SKAction.run(block:) in order to set the penguin's isVisible property to be false rather than doing it directly, because we want it to fit into the sequence
     }
 
 }
