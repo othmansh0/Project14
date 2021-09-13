@@ -33,7 +33,7 @@ class GameScene: SKScene {
     var slots = [WhackSlot]()
     
     var popupTime = 0.85
-    
+    var numRounds = 0
     var score = 0 {
         didSet{
             gameScore.text = "Score: \(score)"
@@ -114,6 +114,20 @@ class GameScene: SKScene {
     }
     
     func createEnemy() {
+        numRounds += 1
+        
+        if numRounds >= 30 {
+            for slot in slots {
+                slot.hide()
+            }
+            
+            let gameOver = SKSpriteNode(imageNamed: "gameOver")
+            gameOver.position = CGPoint(x: 512, y: 384)
+            gameOver.zPosition = 1
+            addChild(gameOver)
+            return //to stop recursive calling
+        }
+        
         //decreasing it slowly by trial and error to find 0.991
         popupTime *= 0.991
         
