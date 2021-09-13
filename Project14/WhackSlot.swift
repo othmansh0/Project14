@@ -58,6 +58,11 @@ class WhackSlot: SKNode {
     func show(hideTime: Double) {
         //already shown
         if isVisible { return }
+        //return the penguin to its normal size after hit
+        charNode.xScale = 1
+        charNode.yScale = 1
+        
+        
         //Move charNode up
         charNode.run(SKAction.moveBy(x: 0, y: 80, duration: 0.05))
         isVisible = true

@@ -68,6 +68,40 @@ class GameScene: SKScene {
     
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        //find any touch
+        guard let touch = touches.first else { return }
+        //find where it was tapped
+        let location = touch.location(in: self)
+        //get a node array of all nodes at that point
+        let tappedNodes = nodes(at: location)
+        
+        for node in tappedNodes {
+            // node is spriteNode inside cropNode inside whackSlot which is the one that has ishit and is visible
+            //We need to type cast
+            guard let whackSlot = node.parent?.parent as? WhackSlot else { continue }
+            
+            if !whackSlot.isVisible { continue }
+            if whackSlot.isHit { continue }
+            whackSlot.hit()
+            
+            if node.name == "charFriend" {
+
+                whackSlot.hide()
+                score -= 5
+                
+                run(SKAction.playSoundFileNamed("whackBad.caf", waitForCompletion: false))
+                
+                
+            } else  if node.name == "charEnemy" {
+                //they should have whacked this one
+                //make the size smaller when hit
+                whackSlot.charNode.xScale = 0.85
+                whackSlot.charNode.yScale = 0.85
+                
+                score += 1
+                run(SKAction.playSoundFileNamed("whack.caf", waitForCompletion: false))
+            }
+        }
         
     }
     
