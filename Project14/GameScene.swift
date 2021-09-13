@@ -21,6 +21,9 @@
 //By default, nodes don't crop..we need crop node to hide penguins
 
 // have a crop mask shaped like the hole that makes the penguin invisible when it moves outside the mask.
+//--------------------------------------------------------------------------------------
+
+//asyncAfter() is used to schedule a closure to execute after the time has been reached.
 
 import SpriteKit
 
@@ -28,6 +31,8 @@ import SpriteKit
 class GameScene: SKScene {
     var gameScore: SKLabelNode!
     var slots = [WhackSlot]()
+    
+    var popupTime = 0.85
     
     var score = 0 {
         didSet{
@@ -55,6 +60,10 @@ class GameScene: SKScene {
         for i in 0 ..< 4 { createSlot(at: CGPoint(x: 180 + (i * 170), y: 320)) }
         for i in 0 ..< 5 { createSlot(at: CGPoint(x: 100 + (i * 170), y: 230)) }
         for i in 0 ..< 4 { createSlot(at: CGPoint(x: 180 + (i * 170), y: 140)) }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay){ [weak self] in
+            self?.createEnemy()
+        }
     }
     
     
@@ -69,4 +78,30 @@ class GameScene: SKScene {
         addChild(slot)
         slots.append(slot)
     }
+    
+    func createEnemy() {
+        //decreasing it slowly by trial and error to find 0.991
+        popupTime *= 0.991
+        
+        //Pick a slot to show
+        slots.shuffle()
+        slots[0].show(hideTime: popupTime)
+        
+        //sometimes show more than one slot
+        if Int.random(in: 0...12) > 4 { slots[1].show(hideTime: popupTime) }
+        if Int.random(in: 0...12) > 8 { slots[2].show(hideTime: popupTime) }
+        if Int.random(in: 0...12) > 10 { slots[3].show(hideTime: popupTime) }
+        if Int.random(in: 0...12) > 11 { slots[4].show(hideTime: popupTime) }
+        
+        //let createEnemy call itself after random period of time
+
+        let minDelay = popupTime / 2.0
+        let maxDelay = popupTime * 2
+        let delay = Double.random(in: minDelay...maxDelay)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay){ [weak self] in
+            self?.createEnemy()
+        }
+    }
+    
 }
