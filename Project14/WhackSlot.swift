@@ -47,6 +47,7 @@ class WhackSlot: SKNode {
     }
     
     func show(hideTime: Double) {
+        //already shown
         if isVisible { return }
         //Move charNode up
         charNode.run(SKAction.moveBy(x: 0, y: 80, duration: 0.05))
@@ -63,12 +64,20 @@ class WhackSlot: SKNode {
             charNode.texture = SKTexture(imageNamed: "penguinEvil")
             charNode.name = "charEnemy"
         }
-        
-        
-        
-    
+        //3.5 by trial and error
+        DispatchQueue.main.asyncAfter(deadline: .now() + hideTime * 3.5){ [weak self] in
+            self?.hide()
+            
+        }
         
     }
      
+    func hide() {
+        //already hidden
+        if !isVisible { return }
+        charNode.run(SKAction.moveBy(x: 0, y: -80, duration: 0.05))
+        isVisible = false
+        
+    }
 
 }
