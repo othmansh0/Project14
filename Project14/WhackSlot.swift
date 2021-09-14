@@ -89,6 +89,10 @@ class WhackSlot: SKNode {
     func hide() {
         //already hidden
         if !isVisible { return }
+//        if  let mudParticle = SKEmitterNode(fileNamed: "MyParticle"){
+//            mudParticle.position = self.position
+//            addChild(mudParticle)
+//        }
         charNode.run(SKAction.moveBy(x: 0, y: -80, duration: 0.05))
         isVisible = false
         
@@ -96,7 +100,7 @@ class WhackSlot: SKNode {
     
     func hit(){
         isHit = true
-        
+       
         let delay = SKAction.wait(forDuration: 0.25)
         //slower than hide() method
         let hide = SKAction.moveBy(x: 0, y: -89, duration: 0.5)

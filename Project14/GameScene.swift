@@ -80,14 +80,18 @@ class GameScene: SKScene {
         
         for node in tappedNodes {
             // node is spriteNode inside cropNode inside whackSlot which is the one that has ishit and is visible
-            //We need to type cast
+            //We need to type cast it
             guard let whackSlot = node.parent?.parent as? WhackSlot else { continue }
             
             if !whackSlot.isVisible { continue }
             if whackSlot.isHit { continue }
             whackSlot.hit()
-            
+            if let smokeParticle = SKEmitterNode(fileNamed: "smoke"){
+                smokeParticle.position = whackSlot.position
+                addChild(smokeParticle)
+            }
             if node.name == "charFriend" {
+                
 
                 whackSlot.hide()
                 score -= 5

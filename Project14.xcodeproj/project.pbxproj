@@ -17,6 +17,8 @@
 		1224470626EC908400EA4F73 /* whackBad.caf in Resources */ = {isa = PBXBuildFile; fileRef = 1224470426EC908400EA4F73 /* whackBad.caf */; };
 		1224470926ECB1CF00EA4F73 /* WhackSlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1224470826ECB1CF00EA4F73 /* WhackSlot.swift */; };
 		1224470C26EFBF4C00EA4F73 /* gameOver.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1224470B26EFBF4C00EA4F73 /* gameOver.mp3 */; };
+		1224470F26EFC49F00EA4F73 /* smoke.sks in Resources */ = {isa = PBXBuildFile; fileRef = 1224470E26EFC49F00EA4F73 /* smoke.sks */; };
+		1224471326EFC7CE00EA4F73 /* MyParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 1224471226EFC7CE00EA4F73 /* MyParticle.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		1224470426EC908400EA4F73 /* whackBad.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = whackBad.caf; sourceTree = "<group>"; };
 		1224470826ECB1CF00EA4F73 /* WhackSlot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhackSlot.swift; sourceTree = "<group>"; };
 		1224470B26EFBF4C00EA4F73 /* gameOver.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gameOver.mp3; sourceTree = "<group>"; };
+		1224470E26EFC49F00EA4F73 /* smoke.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = smoke.sks; sourceTree = "<group>"; };
+		1224471226EFC7CE00EA4F73 /* MyParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyParticle.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,8 +70,10 @@
 			children = (
 				122446E826EC8EFC00EA4F73 /* AppDelegate.swift */,
 				122446EE26EC8EFC00EA4F73 /* GameScene.swift */,
+				1224471226EFC7CE00EA4F73 /* MyParticle.sks */,
 				1224470826ECB1CF00EA4F73 /* WhackSlot.swift */,
 				1224470026EC8F9A00EA4F73 /* GameScene.sks */,
+				1224470E26EFC49F00EA4F73 /* smoke.sks */,
 				122446F026EC8EFC00EA4F73 /* GameViewController.swift */,
 				122446F226EC8EFC00EA4F73 /* Main.storyboard */,
 				122446F526EC8EFE00EA4F73 /* Assets.xcassets */,
@@ -140,8 +146,10 @@
 				122446F426EC8EFC00EA4F73 /* Main.storyboard in Resources */,
 				1224470C26EFBF4C00EA4F73 /* gameOver.mp3 in Resources */,
 				1224470126EC8F9A00EA4F73 /* GameScene.sks in Resources */,
+				1224470F26EFC49F00EA4F73 /* smoke.sks in Resources */,
 				122446F626EC8EFE00EA4F73 /* Assets.xcassets in Resources */,
 				1224470526EC908400EA4F73 /* whack.caf in Resources */,
+				1224471326EFC7CE00EA4F73 /* MyParticle.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
